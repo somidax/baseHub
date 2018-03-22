@@ -1,7 +1,7 @@
 <!--
 This is a token listing request template. Please follow it if you are requesting a token listing.
-Token listing guide: https://www.reddit.com/r/ForkDelta/comments/7tntnz/how_to_get_an_erc20_token_listed_on_forkdelta/
-Got questions? Join Discord chat: https://discord.gg/mMnRq7m
+Token listing guide: https://www.reddit.com/user/somidax/comments/86fv4h/how_to_get_an_erc20223_token_listed_on_coinestate/
+Got questions? Join twitter chat: https://twiter.com/somidax
 -->
 
 Contract address:
