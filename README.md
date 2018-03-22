@@ -1,7 +1,7 @@
-# ![coinEstate logo](https://forkdelta.github.io/next/favicon-32x32.png) coinEstate Token basehub used by SOMIDAX DIGITAL LAB FOUNDATION for coinEstate 
+# ![coinEstate logo](https://github.com/somidax/coinEstate/blob/master/images/favicon.ico) coinEstate Token basehub 
 
 
-[![Build Status](https://travis-ci.org/somidax/baseHub.svg?branch=master)](https://travis-ci.org/profile/somidax) [![contributions welcome](https://github.com/somidax/coinEstate/blob/master/images/logo.svg)](https://github.com/somidax/baseHub/issues)
+[![Build Status](https://travis-ci.org/somidax/baseHub.svg?branch=master)](https://travis-ci.org/profile/somidax) [![contributions welcome](https://github.com/somidax/coinEstate/blob/master/images/logo.png)](https://github.com/somidax/baseHub/issues)
 
 **coinEstate** An Ethereum token community marketplace exchange for everyone. Tokenbase is our ERC20 token knowledgebase.
 
