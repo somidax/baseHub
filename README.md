@@ -1,4 +1,4 @@
-# ![coinEstate logo](https://github.com/somidax/coinEstate/blob/master/images/favicon.ico) coinEstate Token basehub 
+# ! coinEstate Token basehub 
 
 
 [![Build Status](https://travis-ci.org/somidax/baseHub.svg?branch=master)](https://travis-ci.org/profile/somidax) [![contributions welcome](https://github.com/somidax/coinEstate/blob/master/images/logo.png)](https://github.com/somidax/baseHub/issues)
