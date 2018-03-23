@@ -12,8 +12,8 @@ with open("scripts/erc20.abi.json") as erc20_abi_f:
     ERC20_ABI = json.load(erc20_abi_f)
 
 KNOWN_LINK_TYPES = frozenset((
-    'Bitcointalk', 'Blog', 'CoinMarketCap', 'Discord', 'Email', 'Facebook',
-    'Github', 'Linkedin', 'Reddit', 'Slack', 'Telegram', 'Twitter', 'WeChat',
+    'Bitcointalk', 'Blog', 'CoinMarketCap', 'Discord', 'Email', 'Medium',
+    'Github', 'Linkedin', 'Reddit', 'Slack', 'Telegram', 'Twitter', 'somidax App',
     'Website', 'Whitepaper', 'YouTube'))
 
 class TestWarning(Exception):
@@ -180,7 +180,7 @@ def test_link_value_https_preferred(content, link=None):
         if parsed_value.scheme == "http":
             raise TestWarning("URL scheme is HTTP, but HTTPS is strongly preferred: {}".format(value))
 
-USER_AGENT = "ForkDelta Token Discovery Tests 0.1.0"
+USER_AGENT = "coinEstate Token baseHub search Tests 0.1.0"
 def test_http_link_active(content, link=None):
     "link URL must be active"
     from requests import get
