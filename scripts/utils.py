@@ -1,15 +1,15 @@
 import json
 import requests
 
-REQUESTS_USERAGENT = 'ForkDelta Token Discovery 0.0.1'
+REQUESTS_USERAGENT = 'coinEstate Token baseHub Discovery 1.0.0'
 
-FORKDELTA_LISTINGS_URL = "https://rawgit.com/forkdelta/forkdelta.github.io/master/config/main.json"
-def get_forkdelta_listings(filepath_or_url=FORKDELTA_LISTINGS_URL):
+COINESTATE_LISTINGS_URL = "https://raw.githubusercontent.com/somidax/coinEstate/master/config/main.json"
+def get_coinestate_listings(filepath_or_url=COINESTATE_LISTINGS_URL):
     if filepath_or_url.startswith("file://"):
         with open(filepath_or_url) as f:
             return json.load(f)["tokens"]
     else:
-        r = requests.get(FORKDELTA_LISTINGS_URL)
+        r = requests.get(COINESTATE_LISTINGS_URL)
         return r.json()["tokens"]
 
 GET_TOKEN_INFO = "https://api.ethplorer.io/getTokenInfo/{}?apiKey=freekey"
@@ -46,13 +46,13 @@ def get_etherscan_notice(addr, html_doc=None):
         return alert_element.decode_contents(formatter="html")
     return None
 
-FORKDELTA_GUIDE_URL = "https://rawgit.com/forkdelta/forkdelta.github.io/master/tokenGuides/{}.ejs"
-def get_forkdelta_guide(symbol):
+COINESTATE_GUIDE_URL = "https://rawgit.com/somidax/coinEstate/tree/master/tokenGuides/{}.ejs"
+def get_coinestate_guide(symbol):
     import requests
-    r = requests.get(FORKDELTA_GUIDE_URL.format(symbol))
+    r = requests.get(COINESTATE_GUIDE_URL.format(symbol))
     return r.text
 
-def get_fd_token_website(guide_contents):
+def get_ce_token_website(guide_contents):
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(guide_contents, 'html.parser')
     footer_link = next(iter(soup.select("blockquote footer a")), None)
@@ -60,7 +60,7 @@ def get_fd_token_website(guide_contents):
         return footer_link.attrs["href"]
     return None
 
-def get_fd_token_description(guide_contents):
+def get_ce_token_description(guide_contents):
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(guide_contents, 'html.parser')
     content_extractor = lambda paragraph: paragraph.decode_contents(formatter="html")
