@@ -18,4 +18,17 @@ A link to a third-party review or discussion of the token:
 Description:
 
 
+
+
+-Bitcointalk: 
+-Email: mailto:
+-Reddit: 
+-Twitter: 
+-Website: https://
+-Whitepaper: 
+
+-name: 
+-symbol: 
+
+
 <!-- If you are not requesting to list a token, feel free to delete this template -->
