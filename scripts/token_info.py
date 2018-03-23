@@ -4,7 +4,7 @@ from utils import *
 import yaml
 from yaml_utils import *
 
-LISTINGS = get_forkdelta_listings()
+LISTINGS = get_coinestate_listings()
 
 DEFAULT_LINK_FIELDS = frozenset((
     "Website", "Bitcointalk", "Blog", "Whitepaper",
@@ -58,7 +58,7 @@ def main(addr, website=None, parse_website=True, guide_mode=True):
         if not listing["symbol"]:
             listing["symbol"] = existing_listing["name"]
         elif listing["symbol"] and listing["symbol"] != existing_listing["name"]:
-            listing["__FORKDELTA_CUSTOM_SYMBOL"] = existing_listing["name"]
+            listing["__COINESTATE_CUSTOM_SYMBOL"] = existing_listing["name"]
 
     if notice is not None:
         listing["notice"] = LiteralString(notice)
@@ -95,7 +95,7 @@ def main(addr, website=None, parse_website=True, guide_mode=True):
             if not description:
                 description += comment_line("The following options were found")
                 description += comment_line("You may need to edit them and you MUST delete commented lines")
-            description += comment_line("From the existing ForkDelta token guide")
+            description += comment_line("From the existing coinEstate token guide")
         description += guide_description + "\n"
 
     if guide_mode and not description:
