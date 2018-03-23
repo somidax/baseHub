@@ -8,8 +8,6 @@ Contract address:
 
 Issuer's official website:
 
-Official contract address confirmation:
-
 <!-- Contract address confirmation MUST be linked from the official website and MUST be visible publicly. It CANNOT be an Etherscan.io link. If the confirmation is not visible immediately, include an explanation of how to find it. -->
 
 Official contract address confirmation (MUST be linked from official website):
