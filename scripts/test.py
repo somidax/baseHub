@@ -3,6 +3,7 @@
 from eth_utils import is_hex_address
 import json
 from unittest import SkipTest
+import cfscrape
 import sys
 from web3 import Web3, HTTPProvider
 import yaml
@@ -202,6 +203,7 @@ def test_http_link_active(content, link=None):
 
     try:
         r = get(value, timeout=30.0, headers={"User-Agent": USER_AGENT})
+        r = cfscrape.create_scraper().get(value, timeout=30.0, headers={"User-Agent": USER_AGENT})
     except RequestException as exc:
         assert False, "error while checking {}: {}".format(value, exc)
     else:
