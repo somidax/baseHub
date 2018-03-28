@@ -21,4 +21,24 @@ Third-party review or discussion of the token, like an established ICO review bl
 Description:
 
 
+
+
+
+Find out more
+
+#links:*HTTPS* is a must!
+
+- Bitcointalk: 
+- Website: 
+- Blog: 
+- Whitepaper: 
+
+- Email: 
+
+- name: 
+- symbol: 
+
+- Team
+
+
 <!-- If you are not requesting to list a token, feel free to delete this template -->
