@@ -1,3 +1,10 @@
+##
+# Project-specific
+new_tokens.csv
+
+##
+# Pythonic
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -103,3 +110,4 @@ ENV/
 #misc
 .pydevproject
 .project
+Alert.txt
