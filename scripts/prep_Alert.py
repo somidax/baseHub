@@ -98,36 +98,36 @@ def reddit_style(token_info):
 
 def discord_style(token_info):
     """
-    **Blah Token $BLAH** by <https://blah.com>
+    **SOMIDAX Token $SMDX** by <https://somidax.net>
 
-    <https://forkdelta.github.io/#!/trade/BLAH-ETH>
+    <https://coinEstate.somidax.net/#!/trade/SMDX-ETH>
     """
 
     website = get_link(token_info, "Website")
     website_name = urlparse(website).hostname
 
-    symbol = token_info["symbol"] if not "__FORKDELTA_CUSTOM_SYMBOL" in token_info else token_info["__FORKDELTA_CUSTOM_SYMBOL"]
+    symbol = token_info["symbol"] if not "__COINESTATE_CUSTOM_SYMBOL" in token_info else token_info["__COINESTATE_CUSTOM_SYMBOL"]
 
     token_name = token_info["name"]
     if "token" not in token_name.lower():
         token_name += " Token"
 
-    return "**{token_name} ${symbol}** by <{website}>  \n<https://forkdelta.github.io/#!/trade/{symbol}-ETH>".format(
+    return "**{token_name} ${symbol}** by <{website}>  \n<https://coinEstate.somidax.net/#!/trade/{symbol}-ETH>".format(
         token_name=token_name, symbol=symbol, website=website
     )
 
 
 def github_response_style(token_info):
     """
-    Thank you for your request! $BLAH token has been listed: https://forkdelta.github.io/#!/trade/BLAH-ETH. We will announce it on our channels shortly.
+        Thank you for your request! $SMDX token has been listed: https://coinEstate.somidax.net/#!/trade/SMDX-ETH. We will announce it on our channels shortly.
 
-    If you like our project, please consider [donating](https://forkdelta.github.io/about/#donate). Your donations keep the project running and are always appreciated.
+    If you like our project, please consider [donating](https://coinestate.somidax.net/about/#donate). Your donations keep the project running and are always appreciated.
     """
 
-    symbol = token_info["symbol"] if not "__FORKDELTA_CUSTOM_SYMBOL" in token_info else token_info["__FORKDELTA_CUSTOM_SYMBOL"]
+    symbol = token_info["symbol"] if not "__COINESTATE_CUSTOM_SYMBOL" in token_info else token_info["__COINESTATE_CUSTOM_SYMBOL"]
 
-    return "Thank you for your request! {name} has been listed: https://forkdelta.github.io/#!/trade/{symbol}-ETH".format(name=token_info["name"], symbol=symbol) \
-        + "\n\nIf you like our project, please consider [donating](https://forkdelta.github.io/about/#donate). Your donations keep the project running and are always appreciated."
+    return "Thank you for your request! {name} has been listed: https://coinEstate.somidax.net/#!/trade/{symbol}-ETH".format(name=token_info["name"], symbol=symbol) \
+        + "\n\nIf you like our project, please consider [donating](https://coinestate.somidax.net/about/#donate). Your donations keep the project running and are always appreciated."
 
 
 STYLE_TO_FUNC = {
