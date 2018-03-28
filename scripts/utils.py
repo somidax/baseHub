@@ -1,10 +1,10 @@
 import json
 import requests
 
-REQUESTS_USERAGENT = 'coinEstate Token baseHub Discovery 1.0.0'
+REQUESTS_USERAGENT = 'coinEstate Token search 0.1.0'
 
 COINESTATE_LISTINGS_URL = "https://raw.githubusercontent.com/somidax/coinEstate/master/config/main.json"
-def get_coinestate_listings(filepath_or_url=COINESTATE_LISTINGS_URL):
+def get_coinEstate_listings(filepath_or_url=COINESTATE_LISTINGS_URL):
     if filepath_or_url.startswith("file://"):
         with open(filepath_or_url) as f:
             return json.load(f)["tokens"]
@@ -47,7 +47,7 @@ def get_etherscan_notice(addr, html_doc=None):
     return None
 
 COINESTATE_GUIDE_URL = "https://rawgit.com/somidax/coinEstate/tree/master/tokenGuides/{}.ejs"
-def get_coinestate_guide(symbol):
+def get_coinEstate_guide(symbol):
     import requests
     r = requests.get(COINESTATE_GUIDE_URL.format(symbol))
     return r.text
