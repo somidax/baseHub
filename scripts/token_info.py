@@ -4,11 +4,11 @@ from utils import *
 import yaml
 from yaml_utils import *
 
-LISTINGS = get_coinestate_listings()
+LISTINGS = get_coinEstate_listings()
 
 DEFAULT_LINK_FIELDS = frozenset((
-    "Website", "Bitcointalk", "Blog", "Whitepaper",
-    "Twitter", "Telegram", "Reddit"))
+    "Website", "Bitcointalk", "Blog", "Whitepaper","Team"
+    "Twitter", "email", "Reddit"))
 
 def main(addr, website=None, parse_website=True, guide_mode=True):
     addr = addr.lower()
@@ -31,11 +31,11 @@ def main(addr, website=None, parse_website=True, guide_mode=True):
     addr_filter = lambda listing: listing["addr"].lower() == addr.lower()
     existing_listing = next(filter(addr_filter, LISTINGS), None)
     if existing_listing:
-        token_guide = get_forkdelta_guide(existing_listing["name"])
-        guide_website = get_fd_token_website(token_guide)
+        token_guide = get_coinEstate_guide(existing_listing["name"])
+        guide_website = get_ce_token_website(token_guide)
         if guide_website and dict(links).get("Website") != guide_website:
             links.append(("Website", guide_website))
-        guide_description = get_fd_token_description(token_guide)
+        guide_description = get_ce_token_description(token_guide)
     else:
         guide_description = None
 
