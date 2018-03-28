@@ -19,5 +19,5 @@ if __name__ == "__main__":
         except:
             print("ERROR IMPORTING {}".format(addr))
         else:
-            with open("tokens/{}.yaml".format(addr), "w") as f:
-                f.write(yaml_content)
+            with open("tokens/{}.yaml".format(addr), "w") as ce:
+                ce.write(yaml_content)
