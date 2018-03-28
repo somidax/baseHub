@@ -9,12 +9,12 @@ from web3 import Web3, HTTPProvider
 import yaml
 
 web3 = Web3(HTTPProvider("https://api.myetherapi.com/eth"))
-with open("scripts/erc20.abi.json") as erc20_abi_f:
-    ERC20_ABI = json.load(erc20_abi_f)
+with open("scripts/erc20.abi.json") as erc20_abi_ce:
+    ERC20_ABI = json.load(erc20_abi_ce)
 
 KNOWN_LINK_TYPES = frozenset((
     'Bitcointalk', 'Blog', 'CoinMarketCap', 'Discord', 'Email', 'Medium',
-    'Github', 'Linkedin', 'Reddit', 'Slack', 'Telegram', 'Twitter', 'somidax App',
+    'Github', 'Linkedin', 'Reddit', 'Slack', 'Telegram', 'Twitter', 'somidaxApp',
     'Website', 'Whitepaper', 'YouTube'))
 
 class TestWarning(Exception):
@@ -260,8 +260,8 @@ def main(targets, quiet=False):
     failures_count = 0
 
     for target in targets:
-        with open(target) as f:
-            content = yaml.safe_load(f.read())
+        with open(target) as ce:
+            content = yaml.safe_load(ce.read())
 
         print("Checking", target)
         for test in generate_tests(content):
