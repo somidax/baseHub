@@ -3,17 +3,18 @@
 from eth_utils import is_hex_address
 import json
 from unittest import SkipTest
+import cfscrape
 import sys
 from web3 import Web3, HTTPProvider
 import yaml
 
 web3 = Web3(HTTPProvider("https://api.myetherapi.com/eth"))
-with open("scripts/erc20.abi.json") as erc20_abi_f:
-    ERC20_ABI = json.load(erc20_abi_f)
+with open("scripts/erc20.abi.json") as erc20_abi_ce:
+    ERC20_ABI = json.load(erc20_abi_ce)
 
 KNOWN_LINK_TYPES = frozenset((
-    'Bitcointalk', 'Blog', 'CoinMarketCap', 'Discord', 'Email', 'Facebook',
-    'Github', 'Linkedin', 'Reddit', 'Slack', 'Telegram', 'Twitter', 'WeChat',
+    'Bitcointalk', 'Blog', 'CoinMarketCap', 'Discord', 'Email', 'Medium',
+    'Github', 'Linkedin', 'Reddit', 'Slack', 'Telegram', 'Twitter', 'somidaxApp',
     'Website', 'Whitepaper', 'YouTube'))
 
 class TestWarning(Exception):
@@ -180,7 +181,7 @@ def test_link_value_https_preferred(content, link=None):
         if parsed_value.scheme == "http":
             raise TestWarning("URL scheme is HTTP, but HTTPS is strongly preferred: {}".format(value))
 
-USER_AGENT = "ForkDelta Token Discovery Tests 0.1.0"
+USER_AGENT = "coinEstate Token baseHub search Tests 0.1.0"
 def test_http_link_active(content, link=None):
     "link URL must be active"
     from requests import get
@@ -202,6 +203,7 @@ def test_http_link_active(content, link=None):
 
     try:
         r = get(value, timeout=30.0, headers={"User-Agent": USER_AGENT})
+        r = cfscrape.create_scraper().get(value, timeout=30.0, headers={"User-Agent": USER_AGENT})
     except RequestException as exc:
         assert False, "error while checking {}: {}".format(value, exc)
     else:
@@ -258,8 +260,8 @@ def main(targets, quiet=False):
     failures_count = 0
 
     for target in targets:
-        with open(target) as f:
-            content = yaml.safe_load(f.read())
+        with open(target) as ce:
+            content = yaml.safe_load(ce.read())
 
         print("Checking", target)
         for test in generate_tests(content):

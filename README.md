@@ -1,7 +1,7 @@
 # coinEstate Token basehub 
 
-
-[![Build Status](https://travis-ci.org/somidax/baseHub.svg?branch=master)](https://travis-ci.org/profile/somidax) [![contributions welcome](https://github.com/somidax/coinEstate/blob/master/images/logo.png)](https://github.com/somidax/baseHub/issues)
+[![Known Vulnerabilities](https://snyk.io/test/github/somidax/basehub/badge.svg?targetFile=scripts%2Frequirements.txt)](https://snyk.io/test/github/somidax/basehub?targetFile=scripts%2Frequirements.txt)
+[![Build Status](https://travis-ci.org/somidax/baseHub.svg?branch=master)](https://travis-ci.org/dashboard) [![contributions welcome](https://github.com/somidax/coinEstate/blob/master/images/logo.png)](https://github.com/somidax/baseHub/issues)
 
 **coinEstate** An Ethereum token community marketplace exchange for everyone. Tokenbase is our ERC20 token knowledgebase.
 
