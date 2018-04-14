@@ -3,18 +3,17 @@
 from eth_utils import is_hex_address
 import json
 from unittest import SkipTest
-import cfscrape
 import sys
 from web3 import Web3, HTTPProvider
 import yaml
 
 web3 = Web3(HTTPProvider("https://api.myetherapi.com/eth"))
-with open("scripts/erc20.abi.json") as erc20_abi_ce:
-    ERC20_ABI = json.load(erc20_abi_ce)
+with open("scripts/erc20.abi.json") as erc20_abi_f:
+    ERC20_ABI = json.load(erc20_abi_f)
 
 KNOWN_LINK_TYPES = frozenset((
-    'Bitcointalk', 'Blog', 'CoinMarketCap', 'Discord', 'Email', 'Medium',
-    'Github', 'Linkedin', 'Reddit', 'Slack', 'Telegram', 'Twitter', 'somidaxApp',
+    'Bitcointalk', 'Blog', 'CoinMarketCap', 'Discord', 'Email', 'Facebook',
+    'Github', 'Linkedin', 'Reddit', 'Slack', 'Telegram', 'Twitter', 'WeChat',
     'Website', 'Whitepaper', 'YouTube'))
 
 class TestWarning(Exception):
@@ -33,6 +32,16 @@ def assert_nonempty_string(dictionary, key):
     assert_string(dictionary, key)
     assert len(dictionary[key]) > 0, \
         "expected {} to be a non-empty".format(key)
+
+def test_file_extension_yaml(filename, content):
+    "file extension must be .yaml"
+    assert filename.endswith(".yaml"), "expected file extension to be .yaml"
+
+def test_filename_match_contract(filename, content):
+    "filename must be match the contract address in the file"
+    from os.path import basename
+    assert filename.startswith("tokens/"), "expected file to be in tokens folder"
+    assert basename(filename).startswith(content["addr"]), "expected filename to match contract address"
 
 def test_addr_key_exists(content):
     "addr must be present"
@@ -181,10 +190,10 @@ def test_link_value_https_preferred(content, link=None):
         if parsed_value.scheme == "http":
             raise TestWarning("URL scheme is HTTP, but HTTPS is strongly preferred: {}".format(value))
 
-USER_AGENT = "coinEstate Token baseHub search Tests 0.1.0"
+USER_AGENT = "ForkDelta Token Discovery Tests 0.1.0"
 def test_http_link_active(content, link=None):
     "link URL must be active"
-    from requests import get
+    import cfscrape
     from requests.exceptions import RequestException
     from rfc3986 import is_valid_uri, uri_reference
     _verify_valid_link_entry(link)
@@ -202,7 +211,6 @@ def test_http_link_active(content, link=None):
         raise SkipTest("linkedin.com won't let us see {} anyway".format(value))
 
     try:
-        r = get(value, timeout=30.0, headers={"User-Agent": USER_AGENT})
         r = cfscrape.create_scraper().get(value, timeout=30.0, headers={"User-Agent": USER_AGENT})
     except RequestException as exc:
         assert False, "error while checking {}: {}".format(value, exc)
@@ -210,6 +218,10 @@ def test_http_link_active(content, link=None):
         assert 200 <= r.status_code < 300, \
             "expected {} link {} to be active, but got {}".format(key, value, r.status_code)
 
+FILE_TESTS = (
+    test_file_extension_yaml,
+    test_filename_match_contract
+)
 CONTENT_TESTS = (
     test_addr_key_exists,
     test_addr_0x_string,
@@ -240,7 +252,12 @@ PER_LINK_TESTS = (
 )
 
 from functools import partial, update_wrapper
-def generate_tests(content):
+def generate_tests(target, content):
+    for test in FILE_TESTS:
+        partial_test = partial(test, target)
+        update_wrapper(partial_test, test)
+        yield partial_test
+
     for test in CONTENT_TESTS:
         yield test
 
@@ -260,11 +277,15 @@ def main(targets, quiet=False):
     failures_count = 0
 
     for target in targets:
-        with open(target) as ce:
-            content = yaml.safe_load(ce.read())
+        try:
+            with open(target) as f:
+                content = yaml.safe_load(f.read())
+        except FileNotFoundError:
+            print("File not found: {}".format(target))
+            continue
 
         print("Checking", target)
-        for test in generate_tests(content):
+        for test in generate_tests(target, content):
             try:
                 retval = test(content)
             except (KeyboardInterrupt, SystemExit):
